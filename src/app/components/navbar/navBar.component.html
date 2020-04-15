@@ -1,0 +1,30 @@
+
+<mat-toolbar>
+ <mat-toolbar-row>
+    <span>Domestic Bookings</span>
+    <span class="example-spacer"></span> 
+    <!-- *ngIf="authService.isLoggedIn | async as isLoggedIn" -->
+    <button mat-raised-button (click)="onLogout()" *ngIf="authService.isLoggedIn | async as isLoggedIn">Log Out</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container" >
+<!-- *ngIf="authService.isLoggedIn | async as isLoggedIn" -->
+    <button mat-raised-button [matMenuTriggerFor]="menu" class="btn-block " *ngIf="authService.isLoggedIn | async as isLoggedIn">
+        <div fxLayout="row" fxLayoutAlign="center center">
+        <!-- <mat-icon>more_vert</mat-icon> -->
+        <span fxFlex>Menu</span>
+        </div>
+    </button>
+    
+    <mat-menu #menu="matMenu" class="ml-3">
+        <button mat-menu-item>
+        <mat-icon>unarchive</mat-icon>
+        <span routerLink="/">Home Page</span>
+        </button>
+        <button mat-menu-item>
+        <mat-icon>file_copy</mat-icon>
+        <span>Admin</span>
+        </button>
+    </mat-menu>
+    </div>

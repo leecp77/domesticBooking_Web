@@ -1,0 +1,158 @@
+
+<div class="container my-container" *ngIf="!customer">
+  <div class="card">
+    <mat-progress-spinner mode="indeterminate" [diameter]="70"></mat-progress-spinner>
+  </div>
+</div>
+<div class="container "*ngIf="customer">
+  <div class="card m-2" >
+  <div class="form-group m-3">
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput">Domestic Customer</label>
+        <input type="text" class="form-control" value="{{customer}}"> 
+      </div>  
+      <div class="col">
+         <div class="form-group">
+          <label for="formGroupExampleInput2">Contract No</label>
+          <input type="text" class="form-control" value="{{saleContractNo}}">
+        </div>
+      </div>
+    </div>   
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput">Grade</label>
+        <input type="text" class="form-control" value="{{grade}}"> 
+      </div>  
+      <div class="col">
+         <div class="form-group">
+          <label for="formGroupExampleInput2">Tonnes Required</label>
+          <input type="text" class="form-control" value="{{tonnesRequired}}">
+        </div>
+      </div>
+    </div>   
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput">Week Commencing</label>
+        <input type="text" class="form-control" value="{{weekCommencing | date}}"> 
+      </div>  
+      <div class="col">
+         <div class="form-group">
+          <label for="formGroupExampleInput2">Reference</label>
+          <input type="text" class="form-control" value="{{reference}}">
+        </div>
+      </div>
+    </div> 
+    <div class="row ">
+    <div class="col">
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Planned Tonnes</label>
+        <input type="text" class="form-control" value="{{plannedTonnes}}">
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="formGroupExampleInput2">CreatedAt</label>
+        <input type="text" class="form-control" value="{{createdAt | date}}">
+      </div>
+    </div>       
+    </div> 
+    <div class="button btn btn-success" (click)='customerList()'>Update Plan Details</div> 
+  </div>
+   <div class="card">
+    <button class="btn btn-success" (click)='showDayForm()'>Add Day to Plan</button>
+  </div>
+<div class="container my-container" *ngIf="newDayForm">
+  <form [formGroup]='formDay' (ngSubmit)="saveDayData()"> 
+   
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" name="dayOfWeek" formControlName="dayOfWeek">
+      <option>Monday</option>
+      <option>Tuesday</option>
+      <option>Wednesday</option>
+      <option>Thursday</option>
+      <option>Friday</option>
+    </select>
+  </div>
+   <div class="form-group">
+    <label for="exampleFormControlInput1">Tonnes Planned</label>
+    <input type="number" class="form-control" name="tonnes" formControlName="tonnes">
+  </div> 
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Notes</label>
+    <input class="form-control" type="text" name="note" formControlName="note"  >
+  </div> 
+     
+  <div class="form-group">
+    <button type="submit" class="btn btn-sm btn-success" >Save</button>
+  </div> 
+
+  </form>
+</div>
+
+  </div>
+<div class="card ml-2">
+
+<div class="card-deck m-3 text-center">
+   
+<div class="card m-2" *ngFor="let dailyDel of dailyDeliveries">
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+   <h4 class="my-0 font-weight-normal"> {{dailyDel.dayOfWeek}}  </h4>   
+    </div>  
+    <div class="card-body">
+      <h4 class="card-title pricing-card-title">Tonnes Planned:<small class="text-muted">{{dailyDel.plannedTonnes}} t</small></h4>
+      <ul class="list-unstyled mt-3 mb-4">
+        <li> Notes: {{dailyDel.note}} </li>
+      </ul>
+      <button type="button" class="btn btn-sm btn-block btn-outline-primary" (click)="getDelivery(dailyDel)">View Plan</button>
+    </div>
+  </div> 
+</div>
+<div class="container">
+<div class="my-container">
+<mat-progress-spinner *ngIf="!showTable" mode="indeterminate" [diameter]="70"></mat-progress-spinner>
+</div>
+
+    
+<table class="table table-sm table-hover card-body" *ngIf="showTable" >
+    <thead>
+    <tr>  
+      <th>Delivery Customer</th>
+      <th>Frieght</th>
+      <th>Tonnes</th>
+      <th>Order No </th>
+      <th>CBH Outturn </th>
+      <th>Purchase Contract# </th>
+      <th>Notes </th>
+      <th>Email Sent </th>
+      <th>Settled </th>
+    </tr>    
+    </thead>
+    <tbody *ngFor="let delivery of deliveries">
+    <div class="my-container">
+      <h4 *ngIf="!delivery" >No Data Avaiable</h4>
+    </div>
+    <tr>
+      <td>{{delivery.deliveryCustomer}}</td>
+      <td>{{delivery.freightCompany}}</td>
+      <td>{{delivery.tonnes}}</td>
+      <td>{{delivery.orderNumber}}</td>
+      <td>{{delivery.cbhOutturnNumber}}</td>
+      <td>{{delivery.purchaseNumber}}</td>
+      <td>{{delivery.note}}</td>
+      <td> <input type="checkbox" class="form-check-input" value="{{delivery.emailSentToCarrier}}"></td>
+      <td><input type="checkbox" class="form-check-input" value="{{delivery.settled}}"/></td>
+     
+    </tr>
+    </tbody>
+    
+  </table>
+</div>
+
+ 
+    
+</div>
+
+</div>

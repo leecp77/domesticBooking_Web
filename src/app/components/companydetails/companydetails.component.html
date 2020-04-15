@@ -1,0 +1,41 @@
+
+<button mat-raised-button color="primary" routerLink="/company_details/insurance_details/{{companyId}}">Insurance Details</button>
+<div class="spacer">
+  <mat-card *ngFor="let company of companyDetail">
+    <mat-grid-list cols="2" rowHeight="500px" > 
+      <mat-grid-tile >
+      <div class="controller">
+      
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Operating Name" value="{{company.OperatingName}}">
+        </mat-form-field>
+          <mat-form-field class="example-full-width">
+          <input matInput placeholder="Legal Name" value="{{company.LegalName}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="ABN" value="{{company.ABN}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="# of Employees" value="{{company.NumberOfEmployees}}">
+        </mat-form-field>
+      </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="controller">        
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Street Address" value="{{company.StreetAddress}}">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Suburb" value="{{company.Suburb}}">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="State" value="{{company.State}}">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Country" value="{{company.Country}}">
+          </mat-form-field>
+        </div>     
+      </mat-grid-tile>         
+    </mat-grid-list>
+  </mat-card>
+</div>

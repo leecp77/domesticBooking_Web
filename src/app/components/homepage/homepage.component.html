@@ -1,0 +1,50 @@
+
+
+<div class="spacer">
+  <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 table" *ngIf="!weeklyBooking">
+
+    <!-- <ng-container matColumnDef="_id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let weeklyBooking"> {{weeklyBookings._id}} </mat-cell>
+    </ng-container>
+     -->
+
+    <ng-container matColumnDef="weekCommencing">
+      <mat-header-cell *matHeaderCellDef> Week Commencing</mat-header-cell>
+      <mat-cell *matCellDef="let weeklyBooking" > {{weeklyBooking.weekCommencing |date }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="domesticCustomer">
+      <mat-header-cell *matHeaderCellDef> Domestic Customer </mat-header-cell>
+      <mat-cell *matCellDef="let weeklyBooking"> {{weeklyBooking.domesticCustomer}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="saleContractNo">
+      <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
+      <mat-cell *matCellDef="let weeklyBooking" > {{weeklyBooking.saleContractNo}}</mat-cell>
+    </ng-container>
+      <ng-container matColumnDef="grade">
+      <mat-header-cell *matHeaderCellDef> Grade </mat-header-cell>
+      <mat-cell *matCellDef="let weeklyBooking" > {{weeklyBooking.grade}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="tonnesRequired">
+      <mat-header-cell *matHeaderCellDef> Tonnes Required </mat-header-cell>
+      <mat-cell *matCellDef="let weeklyBooking" > {{weeklyBooking.tonnesRequired}}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="plannedTonnes">
+      <mat-header-cell *matHeaderCellDef> Planned Tonnes </mat-header-cell>
+      <mat-cell *matCellDef="let weeklyBooking" > {{weeklyBooking.plannedTonnes}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="reference">
+      <mat-header-cell *matHeaderCellDef> Notes </mat-header-cell>
+      <mat-cell *matCellDef="let weeklyBooking" > {{weeklyBooking.reference}}</mat-cell>
+    </ng-container>
+     <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let weeklyBooking" ><button (click)=onEdit(weeklyBooking) id="{{weeklyBooking._id}}" mat-raised-button color="warn"><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> </button></mat-cell>
+    </ng-container>   
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>  
