@@ -1,30 +1,27 @@
 
-<mat-toolbar>
- <mat-toolbar-row>
-    <span>Domestic Bookings</span>
-    <span class="example-spacer"></span> 
-    <!-- *ngIf="authService.isLoggedIn | async as isLoggedIn" -->
-    <button mat-raised-button (click)="onLogout()" *ngIf="authService.isLoggedIn | async as isLoggedIn">Log Out</button>
-  </mat-toolbar-row>
-</mat-toolbar>
 
-<div class="container" >
-<!-- *ngIf="authService.isLoggedIn | async as isLoggedIn" -->
-    <button mat-raised-button [matMenuTriggerFor]="menu" class="btn-block " *ngIf="authService.isLoggedIn | async as isLoggedIn">
-        <div fxLayout="row" fxLayoutAlign="center center">
-        <!-- <mat-icon>more_vert</mat-icon> -->
-        <span fxFlex>Menu</span>
-        </div>
-    </button>
     
-    <mat-menu #menu="matMenu" class="ml-3">
-        <button mat-menu-item>
-        <mat-icon>unarchive</mat-icon>
-        <span routerLink="/">Home Page</span>
-        </button>
-        <button mat-menu-item>
-        <mat-icon>file_copy</mat-icon>
-        <span>Admin</span>
-        </button>
-    </mat-menu>
+<nav class="navbar navbar-expand-md navbar-dark nav-color mb-4">
+  <div class="container">
+    <a routerLink="/" class="navbar-brand a-tag-color">Domestic Bookings</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a routerLink="/" class="nav-link a-tag-color"  *ngIf="authService.isLoggedIn | async as isLoggedIn">Dashboard</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <!-- <li class="nav-item">
+          <a routerLink="/register" class="nav-link">Register</a>
+        </li> -->
+        <li class="nav-item">
+          <a (click)="onLogout()" *ngIf="authService.isLoggedIn | async as isLoggedIn" class="nav-link a-tag-color">Logout</a>
+        </li>
+      </ul>
     </div>
+  </div>
+</nav>

@@ -13,3 +13,18 @@ p {
 .example-spacer {
   flex: 1 1 auto;
 }
+
+a {
+  cursor: pointer;
+}
+
+.navbar-dark {
+  color: #042150;
+}
+
+.nav-color {
+  background: #f5f5f5;
+}
+.a-tag-color {
+  color: #042150 !important;
+}

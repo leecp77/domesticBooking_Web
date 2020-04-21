@@ -1,0 +1,65 @@
+
+<div class="spacer">
+  <form [formGroup]='deliveryForm' (ngSubmit)="onSubmit()"> 
+  <div class="card p-3">
+  <div class="card-header">
+    <h4>Details of Delivery</h4>
+  </div>   
+  <div class="row">
+    <div class="col">
+    <mat-form-field class="example-full-width">
+          <input matInput placeholder="Delivery Customer" name="deliveryCustomer" formControlName="deliveryCustomer">
+        </mat-form-field>         
+    </div>
+    <div class="col">
+     <mat-form-field class="example-full-width">
+          <input matInput placeholder="Freight Company" name="freightCompany" formControlName="freightCompany">
+        </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Tonnes Planned" name="tonnes" formControlName="tonnes">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Order Number" name="orderNumber" formControlName="orderNumber">
+      </mat-form-field>   
+    </div>
+    
+  </div>
+  <div class="row">
+  <div class="col">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="CBH Outturn Number" name="cbhOuttunrNumber" formControlName="cbhOuttunrNumber">
+      </mat-form-field>
+    </div>
+    <div class="col">    
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Purchase Number" name="purchaseNumber" formControlName="purchaseNumber">
+      </mat-form-field>
+    </div>
+         
+    
+  </div>
+  <div class="row">
+     <div class="col">
+      <mat-checkbox name="emailSentToCarrier" formControlName="emailSentToCarrier">Email Sent to Carrier</mat-checkbox>  
+    </div>  
+    <div class="col">
+     <mat-checkbox name="settled" formControlName="settled">Settled</mat-checkbox> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+     <mat-label>Notes</mat-label>
+             <textarea matInput placeholder="Ex. It makes me feel..." name="notes" formControlName="notes"></textarea>
+    </div>
+  </div>
+  </div> 
+  <button class="btn" mat-raised-button color="green" *ngIf="!loading">Save</button>
+  <button class="btn" mat-raised-button color="green" *ngIf="loading">Saving...</button>
+  </form>
+</div>

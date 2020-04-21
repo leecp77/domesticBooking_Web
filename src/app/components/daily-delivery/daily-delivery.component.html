@@ -11,15 +11,15 @@
       <div class="col">
         <label for="formGroupExampleInput">Domestic Customer</label>
         <input type="text" class="form-control" value="{{customer}}"> 
-      </div>  
-      <div class="col">
+      </div>     
+    </div>   
+    <div class="row mt-2">
+       <div class="col">
          <div class="form-group">
           <label for="formGroupExampleInput2">Contract No</label>
           <input type="text" class="form-control" value="{{saleContractNo}}">
         </div>
       </div>
-    </div>   
-    <div class="row">
       <div class="col">
         <label for="formGroupExampleInput">Grade</label>
         <input type="text" class="form-control" value="{{grade}}"> 
@@ -60,34 +60,33 @@
     <div class="button btn btn-success" (click)='customerList()'>Update Plan Details</div> 
   </div>
    <div class="card">
-    <button class="btn btn-success" (click)='showDayForm()'>Add Day to Plan</button>
+    <button class="btn btn-success" (click)='showDayForm($event)'>Add Day to Plan</button>
   </div>
-<div class="container my-container" *ngIf="newDayForm">
+<div class="container my-container" *ngIf="newDayForm || editButton">
   <form [formGroup]='formDay' (ngSubmit)="saveDayData()"> 
    
   <div class="form-group">
     <label for="exampleFormControlSelect1">Example select</label>
     <select class="form-control" name="dayOfWeek" formControlName="dayOfWeek">
-      <option>Monday</option>
-      <option>Tuesday</option>
-      <option>Wednesday</option>
-      <option>Thursday</option>
-      <option>Friday</option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
     </select>
   </div>
    <div class="form-group">
     <label for="exampleFormControlInput1">Tonnes Planned</label>
-    <input type="number" class="form-control" name="tonnes" formControlName="tonnes">
+    <input type="number" class="form-control" name="plannedTonnes" formControlName="plannedTonnes">
   </div> 
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Notes</label>
     <input class="form-control" type="text" name="note" formControlName="note"  >
   </div> 
-     
   <div class="form-group">
-    <button type="submit" class="btn btn-sm btn-success" >Save</button>
-  </div> 
-
+    <button type="submit" color="green" mat-raised-button *ngIf="!editButton" >Save</button>
+    <button  color="green" mat-raised-button *ngIf="editButton" id="edit">Edit</button>
+  </div>
   </form>
 </div>
 
@@ -102,11 +101,13 @@
    <h4 class="my-0 font-weight-normal"> {{dailyDel.dayOfWeek}}  </h4>   
     </div>  
     <div class="card-body">
-      <h4 class="card-title pricing-card-title">Tonnes Planned:<small class="text-muted">{{dailyDel.plannedTonnes}} t</small></h4>
+      <h5 class="card-title pricing-card-title">Tonnes Planned: <small class="text-muted">{{dailyDel.plannedTonnes}} t</small></h5>
       <ul class="list-unstyled mt-3 mb-4">
         <li> Notes: {{dailyDel.note}} </li>
       </ul>
-      <button type="button" class="btn btn-sm btn-block btn-outline-primary" (click)="getDelivery(dailyDel)">View Plan</button>
+      <button type="button" class="btn btn-sm btn-block btn-outline-primary" mat-raised-button (click)="getDelivery(dailyDel._id)">View Plan</button>
+      <button type="button" class="btn btn-sm btn-block btn-outline-success" mat-raised-button  (click)="editDelivery(dailyDel)">Edit Plan</button>
+      <button type="button" class="btn btn-sm btn-block btn-outline-danger" mat-raised-button  (click)="deleteDelivery(dailyDel)">Delete Plan</button>
     </div>
   </div> 
 </div>
@@ -128,6 +129,8 @@
       <th>Notes </th>
       <th>Email Sent </th>
       <th>Settled </th>
+      <th> </th>
+      <th> </th>
     </tr>    
     </thead>
     <tbody *ngFor="let delivery of deliveries">
@@ -141,9 +144,13 @@
       <td>{{delivery.orderNumber}}</td>
       <td>{{delivery.cbhOutturnNumber}}</td>
       <td>{{delivery.purchaseNumber}}</td>
-      <td>{{delivery.note}}</td>
+      <td>{{delivery.notes}}</td>
       <td> <input type="checkbox" class="form-check-input" value="{{delivery.emailSentToCarrier}}"></td>
       <td><input type="checkbox" class="form-check-input" value="{{delivery.settled}}"/></td>
+      <td><button class="btn" mat-raised-button color="accent" (click)="selectForDeliveryForm(delivery)">Edit</button></td>
+      <td><button class="btn" mat-raised-button color="warn">Delete</button></td>
+     
+    
      
     </tr>
     </tbody>

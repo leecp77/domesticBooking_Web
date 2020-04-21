@@ -18,6 +18,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { AuthGuardService } from "./service/auth-guard.service";
 import { DailyDeliveryComponent } from "./components/daily-delivery/daily-delivery.component";
+import { ModalalertComponent } from "./components/modalalert/modalalert.component";
+import { DeliveryformmodalComponent } from "./components/deliveryformmodal/deliveryformmodal.component";
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { DailyDeliveryComponent } from "./components/daily-delivery/daily-delive
     CompanydetailsComponent,
     LoginComponent,
     DailyDeliveryComponent,
+    ModalalertComponent,
+    DeliveryformmodalComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,7 @@ import { DailyDeliveryComponent } from "./components/daily-delivery/daily-delive
     FormsModule,
     ReactiveFormsModule,
   ],
+  entryComponents: [ModalalertComponent, DeliveryformmodalComponent],
   providers: [
     ServerService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
